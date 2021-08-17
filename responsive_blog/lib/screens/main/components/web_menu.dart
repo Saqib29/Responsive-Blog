@@ -27,7 +27,7 @@ class WebMenu extends StatelessWidget {
   }
 }
 
-class WebMenuItem extends StatelessWidget {
+class WebMenuItem extends StatefulWidget {
   const WebMenuItem({
     Key? key, 
     required this.isActive,
@@ -40,18 +40,40 @@ class WebMenuItem extends StatelessWidget {
   final VoidCallback press;
 
   @override
+  _WebMenuItemState createState() => _WebMenuItemState();
+}
+
+class _WebMenuItemState extends State<WebMenuItem> {
+  bool _isHover = false;
+
+  Color _borderColor(){
+    if(widget.isActive){
+      return sPrimaryColor;
+    } else if(!widget.isActive & _isHover){
+      return sPrimaryColor.withOpacity(0.4);
+    }
+    return Colors.transparent;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: press,
-      child: Container(
+      onTap: widget.press,
+      onHover: (value) {
+        setState(() {
+          _isHover = value;
+        });
+      },
+      child: AnimatedContainer(
+        duration: sDefaultDuration,
         padding: EdgeInsets.symmetric(vertical: sDefaultPadding / 2),
         margin: EdgeInsets.symmetric(horizontal: sDefaultPadding),
         decoration: BoxDecoration(
           border: Border(
-            bottom: BorderSide(color: isActive ? sPrimaryColor : Colors.transparent, width: 3),
+            bottom: BorderSide(color: _borderColor(), width: 3),
           ),
         ),
-        child: Text(text, style: TextStyle(color: Colors.white, fontWeight: isActive ? FontWeight.w600 : FontWeight.normal)),
+        child: Text(widget.text, style: TextStyle(color: Colors.white, fontWeight: widget.isActive ? FontWeight.w600 : FontWeight.normal)),
       ),
     );
   }
