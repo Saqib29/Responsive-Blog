@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'screens/main/main_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
 
-      // home: MainScreen(),
+      home: MainScreen(),
     );
   }
 }
