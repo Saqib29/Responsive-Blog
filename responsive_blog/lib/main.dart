@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'constants.dart';
 import 'screens/main/main_screen.dart';
 
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   // Root of the application
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       // debugShowCheckedModeBanner: false,
       title: "Respetro Blog",
       theme: ThemeData(
