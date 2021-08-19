@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_blog/models/Blog.dart';
+import 'package:responsive_blog/responsive.dart';
 
 import '../../constants.dart';
 import 'components/blog_post.dart';
@@ -27,9 +28,9 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        SizedBox(width: sDefaultPadding),
+        if(!Responsive.isMobile(context)) SizedBox(width: sDefaultPadding),
         // Sidebar
-        Expanded(
+        if(!Responsive.isMobile(context)) Expanded(
           child: Column(
             children: [
               Search(),
