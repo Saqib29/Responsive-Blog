@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:responsive_blog/models/Blog.dart';
 
 import '../../constants.dart';
 import 'components/blog_post.dart';
+import 'components/categories.dart';
+import 'components/recent_posts.dart';
+import 'components/search.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -14,6 +16,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Expanded(
           flex: 2,
@@ -25,10 +28,16 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SizedBox(width: sDefaultPadding),
+        // Sidebar
         Expanded(
-          child: Container(
-            height: 400,
-            color: Colors.blueGrey,
+          child: Column(
+            children: [
+              Search(),
+              SizedBox(height: sDefaultPadding),
+              Categories(),
+              SizedBox(height: sDefaultPadding),
+              RecentPosts(),
+            ],
           ),
         ),
       ],
